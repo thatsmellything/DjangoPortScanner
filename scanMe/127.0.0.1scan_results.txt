@@ -1,0 +1,1 @@
+--------------------------------------------------Scanning Target: 127.0.0.1Scanning started at:2022-12-09 21:34:29.225877--------------------------------------------------Port 631 is openPort 5432 is openPort 5433 is openPort 8000 is openPort 32939 is openPort 33602 is open
