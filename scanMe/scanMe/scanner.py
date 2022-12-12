@@ -5,11 +5,22 @@ from datetime import datetime
 
 def scan(target):
     #open a file and append the results
-    f = open(target + "scan_results.txt","a")
-    f.write("-" * 50)
-    f.write("Scanning Target: " + target)
-    f.write("Scanning started at:" + str(datetime.now()))
-    f.write("-" * 50)
+    #f = open(target + "scan_results.txt","a")
+    #f.write("<p>" + "-" * 50 + "</p>")
+    #f.write("<p> Scanning Target: " + target + "</p>")
+    #f.write("<p> Scanning started at:" + str(datetime.now()) + "</p>")
+    #f.write("<p> " + "-" * 50 +"</p>")
+
+
+
+
+
+
+    f = open(target + "scan_results.txt","w")
+    f.write("-" * 50 + "\n")
+    f.write("Scanning Target: " + target + "\n")
+    f.write("Scanning started at:" + str(datetime.now()) + "\n")
+    f.write("-" * 50 +"\n")
     try:
         
         # will scan ports between 1 to 65,535
@@ -20,7 +31,7 @@ def scan(target):
             # returns an error indicator
             result = s.connect_ex((target,port))
             if result ==0:
-                f.write("Port {} is open".format(port))
+                f.write("Port {} is open".format(port) + "\n")
             s.close()
             
     except socket.gaierror:

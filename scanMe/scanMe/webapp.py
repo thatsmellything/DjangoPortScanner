@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from . import scanner
+import time
 
 
 
@@ -22,9 +23,20 @@ def output(request):
     else:
         ip = request.META.get('REMOTE_ADDR')
     
+    #give time for scanner to run
+
     
-    output_data = scanner.scan(ip)
-    
+
+    make_output_file = scanner.scan(ip)
+    scanner.scan(ip)
+    #time.sleep(10)
+
+    output_file = open(ip + "scan_results.txt","r")
+
+    #read the output file
+    output_data = output_file.read()
+    output_file.close()
+
     
     return render(request,"scanMe.html",{"output_data":output_data})
     
