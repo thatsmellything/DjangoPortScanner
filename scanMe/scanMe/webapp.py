@@ -29,14 +29,15 @@ def output(request):
 
     make_output_file = scanner.scan(ip)
     scanner.scan(ip)
+    scanner.nmapScan(ip)
     #time.sleep(10)
 
-    output_file = open(ip + "scan_results.txt","r")
+    #output_file = open(ip + "scan_results.txt","r")
 
     #read the output file
-    output_data = output_file.read()
-    output_file.close()
+    #utput_data = output_file.read()
+    #output_file.close()
 
     #redirect to scans/IP+scan_results.html
-    return render(request,ip + "scan_results.html",{'output_data':output_data})
+    return render(request,ip + "scan_results.html")
     

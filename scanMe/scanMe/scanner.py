@@ -2,6 +2,11 @@
 import sys
 import socket
 from datetime import datetime
+import nmap
+
+import socket
+#socket.gethostbyname(socket.gethostname())
+
 
 def scan(target):
     #open a file and append the results
@@ -46,14 +51,39 @@ def scan(target):
             
     f.write("<p> " + "-" * 50 +"</p>")
     f.write("<p> Scanning finished at:" + str(datetime.now()) + "</p>")
+    #link back to home page
+    #f.write("<p><a href='{% url index %}'>Back to Home</a></p>")
     f.write("<p>" + "-" * 50 + "</p>")
     f.write("</body></html>")
 
 
+
+
     #f.close()
     return f
-            
 
+
+
+def nmapScan(target):
+    nmScan = nmap.PortScanner()
+    nmScan.scan(target, '1-1024', "-Pn")
+    for host in nmScan.all_hosts():
+     print('Host : %s (%s)' % (host, nmScan[host].hostname()))
+     print('State : %s' % nmScan[host].state())
+     for proto in nmScan[host].all_protocols():
+         print('----------')
+         print('Protocol : %s' % proto)
+ 
+         lport = nmScan[host][proto].keys()
+         #lport.sort()
+         for port in lport:
+             print('port : %s\tstate : %s' % (port, nmScan[host][proto][port]['state']))
+
+
+
+#scan local IP
+       
+#scan(socket.gethostbyname(socket.gethostname()))
 
 
 

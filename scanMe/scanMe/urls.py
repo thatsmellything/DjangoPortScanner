@@ -22,4 +22,5 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', webapp.button),
     url(r'^output', webapp.output,name="script"),
+    #url(r'^$', 'index', name='index'),
 ]
