@@ -16,11 +16,13 @@ def scan(target):
 
 
 
-    f = open(target + "scan_results.txt","w")
-    f.write("-" * 50 + "\n")
-    f.write("Scanning Target: " + target + "\n")
-    f.write("Scanning started at:" + str(datetime.now()) + "\n")
-    f.write("-" * 50 +"\n")
+    f = open("scans/"+target + "scan_results.html","w")
+    f.write("<html><head><title>Scan Results</title></head><body>")
+    f.write("<p>" + "-" * 50 + "</p>")
+    f.write("<p> Scanning Target: " + target + "</p>")
+    f.write("<p> Scanning started at:" + str(datetime.now()) + "</p>")
+    f.write("<p> " + "-" * 50 +"</p>")
+    f.write("<p> Open Ports: </p>")
     try:
         
         # will scan ports between 1 to 65,535
@@ -31,14 +33,21 @@ def scan(target):
             # returns an error indicator
             result = s.connect_ex((target,port))
             if result ==0:
-                f.write("Port {} is open".format(port) + "\n")
+                f.write("<p>Port {} is open</p>".format(port))
+                
             s.close()
             
     except socket.gaierror:
-            f.write("\n Hostname Could Not Be Resolved !!!!")
+            f.write("<p> Hostname Could Not Be Resolved !!!!</p>")
+            
             
     except socket.error:
-            f.write("\ Server not responding !!!!")
+            f.write("<p> Could not connect to server !!!!</p>")
+            
+    f.write("<p> " + "-" * 50 +"</p>")
+    f.write("<p> Scanning finished at:" + str(datetime.now()) + "</p>")
+    f.write("<p>" + "-" * 50 + "</p>")
+    f.write("</body></html>")
 
 
     #f.close()
