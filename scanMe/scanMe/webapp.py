@@ -37,6 +37,6 @@ def output(request):
     output_data = output_file.read()
     output_file.close()
 
-    
-    return render(request,"scanMe.html",{"output_data":output_data})
+    #redirect to scans/IP+scan_results.html
+    return render(request,ip + "scan_results.html",{'output_data':output_data})
     

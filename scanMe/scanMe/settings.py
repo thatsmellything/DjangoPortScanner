@@ -54,7 +54,7 @@ ROOT_URLCONF = 'scanMe.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['my_templates'],
+        'DIRS': ['my_templates', 'scans'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
